@@ -13,15 +13,18 @@ import type { TokenStore } from "../port";
  * const store = createSecureStoreTokenStore({
  *   getItem: (k) => SecureStore.getItemAsync(k, {
  *     keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY, // no iCloud sync, device-only
- *     requireAuthentication: true,                                    // biometric / passcode gate
  *   }),
  *   setItem: (k, v) => SecureStore.setItemAsync(k, v, {
  *     keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
- *     requireAuthentication: true,
  *   }),
  *   deleteItem: (k) => SecureStore.deleteItemAsync(k),
  * });
  * ```
+ *
+ * Leave `requireAuthentication` OFF for a session token: it is read on every request, so a
+ * biometric gate would prompt Face ID/fingerprint per request (and it throws on Android devices
+ * with no screen lock). Reserve that option for rarely-read secrets — and if you do use it,
+ * put an in-memory cache in front so reads don't hit the keychain each time.
  *
  * On Android, also exclude this key from Auto Backup (a restored value can't be decrypted).
  */
