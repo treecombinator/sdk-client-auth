@@ -17,7 +17,7 @@ it ships an in-memory store and an Expo SecureStore adapter, with zero runtime d
 ## Install
 
 ```bash
-npm install github:treecombinator/sdk-client-auth
+givo add @treecombinator/sdk-client-auth
 ```
 
 ## Use
