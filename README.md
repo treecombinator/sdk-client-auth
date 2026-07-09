@@ -28,8 +28,12 @@ import { createHttpClient } from "@treecombinator/sdk-client-http";
 import * as SecureStore from "expo-secure-store";
 
 const store = createSecureStoreTokenStore({
-  getItem: (k) => SecureStore.getItemAsync(k),
-  setItem: (k, v) => SecureStore.setItemAsync(k, v),
+  getItem: (k) => SecureStore.getItemAsync(k, {
+    keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY, // no iCloud sync, device-only
+  }),
+  setItem: (k, v) => SecureStore.setItemAsync(k, v, {
+    keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
+  }),
   deleteItem: (k) => SecureStore.deleteItemAsync(k),
 });
 
