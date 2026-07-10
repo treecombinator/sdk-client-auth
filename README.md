@@ -98,3 +98,24 @@ contract it consumes (`AuthUser`, `Session`, `AUTH_ROUTES`, `AuthRoute`, `AuthRo
   `invalid_credentials`, which is a failed login, not a dead session); the server stays authoritative.
 - The session token is persisted per the top-level-`token` rule above and cleared by `logout`. For real sessions
   use `createSecureStoreTokenStore`; the in-memory store loses the token when the process ends.
+
+## Social login (Google/Apple)
+
+Same domain, different way in — merged from the former `@treecombinator/sdk-client-social` in 0.1.0:
+
+```ts
+import { createSocialLogin } from "@treecombinator/sdk-client-auth";
+
+const social = createSocialLogin({
+  http,
+  store, // the SAME token store the auth client uses
+  routes: { google: "/auth/google", apple: "/auth/apple" }, // default: one /auth/social route
+  authorizers: {
+    google: async () => ({ idToken }),          // native sign-in SDK
+    apple: async () => ({ idToken, nonce, name }), // expo-apple-authentication
+  },
+});
+const session = await social.login("google");
+```
+
+Errors: `social_provider_unconfigured` (no authorizer for the provider), `social_session_invalid` (BFF response carried no token).

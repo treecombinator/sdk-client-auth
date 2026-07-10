@@ -88,3 +88,13 @@ export { AUTH_ROUTES } from "./port";
 export type { AuthClient, AuthHttp, AuthRoute, AuthRoutes, AuthUser, Session, TokenStore } from "./port";
 export { createMemoryTokenStore } from "./adapters/memory";
 export { createSecureStoreTokenStore, type SecureStoreDeps } from "./adapters/secure-store";
+export { createSocialLogin } from "./social";
+export type {
+  SocialAuthorizer,
+  SocialCredential,
+  SocialHttp,
+  SocialLogin,
+  SocialLoginConfig,
+  SocialLoginInput,
+  SocialProvider,
+} from "./social";

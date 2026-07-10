@@ -1,21 +1,49 @@
 {
   "name": "@treecombinator/sdk-client-auth",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "Apache-2.0",
-  "description": "Tree Combinator SDK — client auth domain (email/password, magic link, password reset) over an injected HTTP client, with device token stores.",
+  "description": "Tree Combinator SDK — client auth domain (email/password, magic link, password reset) over an injected HTTP client, with device token stores; social login (Google/Apple via injected authorizers) lives here too.",
   "type": "module",
-  "files": ["dist", "AGENTS.md", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "AGENTS.md",
+    "README.md",
+    "LICENSE"
+  ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
-      "require": { "types": "./dist/index.d.cts", "default": "./dist/index.cjs" }
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
-  "scripts": { "build": "tsup", "prepare": "tsup", "typecheck": "tsc --noEmit", "clean": "rm -rf dist" },
-  "devDependencies": { "tsup": "^8.5.1", "typescript": "^5.5.0" },
-  "repository": { "type": "git", "url": "git+https://github.com/treecombinator/sdk-client-auth.git" },
-  "publishConfig": { "access": "public", "registry": "https://registry.givo.dev/npm/" }
+  "scripts": {
+    "build": "tsup",
+    "prepare": "tsup",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/treecombinator/sdk-client-auth.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.givo.dev/npm/"
+  },
+  "dependencies": {
+    "@treecombinator/sdk-common": "^0.0.1"
+  }
 }

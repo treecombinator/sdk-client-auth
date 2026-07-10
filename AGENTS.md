@@ -36,3 +36,7 @@ const session = await auth.login(email, password); // persists session.token in 
   register-that-signs-in, reset-that-auto-logs-in, magic-link consume, `me` sliding renewal. `logout` clears it.
 - `verifySession` is absent by design — the BFF verifies the JWT. A stale token 401s; the http client clears the store.
 - Zero runtime dependencies — the package never throws its own errors (failures come from the injected http client).
+
+## Social login
+
+`createSocialLogin({ http, store, authorizers, routes? })` is part of THIS package since 0.1.0 (the old @treecombinator/sdk-client-social is deprecated). Authorizers are injected — never import expo packages here. The session lands via the same `store` used by `createAuthClient`; do not add a second persistence path.
